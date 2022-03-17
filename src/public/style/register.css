@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html,
+body {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+}
+
+div.container form input {
+    display: block;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+    padding: 5px;
+    border-radius: 4px;
+    border: thin solid black;
+    text-align: center;
+}
+
+input:focus {
+    outline: none;
+}
+
+div.alert {
+    margin-top: 10px;
+    width: 50%;
+    text-align: center;
+}
