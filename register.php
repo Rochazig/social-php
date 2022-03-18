@@ -4,11 +4,11 @@ session_start();
 include __DIR__."/src/libs/database/connect.php";
 include __DIR__."/src/controllers/accountscontroller.php";
 
-if(isset($_SESSION['userId'])) {
-    if(!empty($_SESSION['userId']) || $_SESSION['userId'] != null) {
-        header("location: index.php");
-    }
-}
+// if(isset($_SESSION['userId'])) {
+//     if(!empty($_SESSION['userId']) || $_SESSION['userId'] != null) {
+//         header("location: index.php");
+//     }
+// }
 
 $accounts = new Accounts();
 
@@ -20,42 +20,21 @@ if(isset($_POST['enviar'])) {
         $ruser = mysqli_escape_string($connection, $_POST['usuario']);
         $rpass = mysqli_escape_string($connection, $_POST['senha']);
         $remail = mysqli_escape_string($connection, $_POST['email']);
+        $date = date("Y-m-d");
 
         if(!$accounts->thisUserHasRegistred($ruser) && !$accounts->thisEmailHasRegistred($remail)) {
 
-            $sqlcode = "INSERT INTO tb_users (
-                user_name,
-                user_pass,
-                user_email,
-                user_image,
-                user_bio,
-                user_followers,
-                user_following,
-                user_registredAt,
-                user_verified,
-                authorization,
-                token_auth,
-                token_auth_expire
-            ) VALUES (
-                '".$ruser."', 
-                '".md5($rpass)."', 
-                '".$remail."', 
-                'datas/images/profiles/notavatar.png',
-                'null',
-                '{}',
-                '{}',
-                '0',
-                'null',
-                'null'
-            )";
-
+            $sqlcode = "INSERT INTO tb_users (user_name, user_pass, user_email, user_registredAt, authorization) VALUES ('".$ruser."', '".md5($rpass)."', '".$remail."', '".$date."', 0)";
             $query = mysqli_query($connection, $sqlcode);
+            
+            var_dump($connection);
+            var_dump($query);
 
             if($query) {
-                echo "<div clas='alert alert-success'>Registrado com sucesso.</div>";
+                $_SESSION['message'] = "<div class='alert alert-success'>Usuário registrado</div>";
             }
         } else {
-            $_SESSION['error'] = "Este usuario já existe.";
+            $_SESSION['message'] = "<div class='alert alert-danger'>Este usuario já existe.</div>";
         }
     }
 }
@@ -86,8 +65,8 @@ if(isset($_POST['enviar'])) {
             <a href="./login.php">Já tens uma conta?</a>
 
             <?php
-                if(isset($_SESSION['error'])) {
-                    echo "<div class='alert alert-danger'>".$_SESSION['error']."</div>";
+                if(isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
                 }
             ?>
         </div>
@@ -96,6 +75,6 @@ if(isset($_POST['enviar'])) {
 </html>
 
 <?php
-unset($_SESSION['error']);
-$_SESSION['error'] = null;
+unset($_SESSION['message']);
+$_SESSION['message'] = null;
 ?>
