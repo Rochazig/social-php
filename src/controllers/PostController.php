@@ -15,14 +15,7 @@ class Posts {
             if(mysqli_num_rows($query) > 0) {
                 $rows = mysqli_fetch_assoc($query);
 
-                $insertcode = "INSERT INTO tb_posts (post_author, post_title, post_content, post_date, category) VALUES (
-                        '".$rows['user_name']."', 
-                        '".$rtitle."'
-                        '".$rcontent."',
-                        '".$date."',
-                        '".$category."'
-                    )";
-
+                $insertcode = "INSERT INTO tb_posts (post_author, post_title, post_content, post_date, category) VALUES ('".$rows['user_name']."', '".$rtitle."', '".$rcontent."', '".$date."','".$category."')";
                 $qinsert = mysqli_query($connection, $insertcode);     
 
                 if($qinsert) 

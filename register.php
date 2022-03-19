@@ -26,10 +26,6 @@ if(isset($_POST['enviar'])) {
 
             $sqlcode = "INSERT INTO tb_users (user_name, user_pass, user_email, user_registredAt, authorization) VALUES ('".$ruser."', '".md5($rpass)."', '".$remail."', '".$date."', 0)";
             $query = mysqli_query($connection, $sqlcode);
-            
-            var_dump($connection);
-            var_dump($query);
-
             if($query) {
                 $_SESSION['message'] = "<div class='alert alert-success'>Usuário registrado</div>";
             }
@@ -43,7 +39,7 @@ if(isset($_POST['enviar'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

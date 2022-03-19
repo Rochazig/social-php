@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Accounts {
     public function thisUserHasRegistred(string $name): bool {
         include $_SERVER['DOCUMENT_ROOT']."/src/libs/database/connect.php";

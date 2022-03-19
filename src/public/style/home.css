@@ -13,3 +13,26 @@ body {
 h1 {
     font-size: 3rem;
 }
+
+.posts {
+    text-align: center;
+}
+
+.posts a {
+    text-align: left;
+}
+
+.post h3 {
+    font-size: 1.9rem;
+}
+.post p {
+    font-size: 1.1rem;
+    color: #969696;
+    margin-bottom: 0;
+}
+
+.post a {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
